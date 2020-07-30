@@ -11,7 +11,7 @@
                     </ion-card-title>
 
                     <ion-list>
-                        <ion-item class="">
+                        <ion-item [hidden]="viewOnly">
                             <ion-label position="floating">Activity</ion-label>
                             <ion-input type="text" #activityInput>
                             </ion-input>
@@ -22,7 +22,7 @@
                         <ng-container *ngIf="list.listActivity && list.listActivity.length">
                             <ion-item *ngFor="let activity of list.listActivity; let j = index;">
                                 <ion-label>{{activity}}</ion-label>
-                                <ion-button (click)="deleteActivity(j, i)">
+                                <ion-button (click)="deleteActivity(j, i)" [hidden]="viewOnly">
                                     <ion-icon name="trash"></ion-icon>
                                 </ion-button>
                             </ion-item>

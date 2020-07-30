@@ -8,7 +8,9 @@ import { ModalController } from "@ionic/angular";
   styleUrls: ["insert-activity.component.css"]
 })
 export class InsertActivityComponent implements OnInit {
-  @Input('index') listIndexNumber: any;
+  @Input('index') index: any;
+  @Input('viewOnly') viewOnly: any;
+
   listArray: Array<any> = [];
   isModalOpened: boolean = false;
   constructor(
@@ -19,7 +21,6 @@ export class InsertActivityComponent implements OnInit {
   ngOnInit() {
     this.listArray = this.pageDataService.listArray;
     this.checkIsModalOpened();
-    console.log(this.listIndexNumber);
   }
 
   saveActivity(activityInput, i) {

@@ -121,4 +121,16 @@ export class CardListComponent implements OnInit {
 
     return await modal.present();
   }
+
+  async openViewAllActivities() {
+    const modal = await this.modalController.create({
+      component: InsertActivityComponent,
+      componentProps: {
+        index: this.index,
+        viewOnly: true
+      }
+    });
+
+    return await modal.present();
+  }
 }

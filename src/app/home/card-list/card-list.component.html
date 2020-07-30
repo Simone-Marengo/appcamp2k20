@@ -12,7 +12,7 @@
         </p>
         <p>
             Activities {{list.listActivity.length}}
-            <a class="cursor-pointer" [hidden]="list.listActivity.length === 0">view all</a>
+            <a class="cursor-pointer" [hidden]="list.listActivity.length === 0" (click)="openViewAllActivities()">view all</a>
         </p>
     </ion-card-content>
 </ion-card>

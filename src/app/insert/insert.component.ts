@@ -33,7 +33,6 @@ export class InsertPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.setMinStartDates();
-    console.log(this.index)
     if (this.index !== null && this.index !== undefined) {
       this.element = this.pageDataService.getElementByIndexElementToUpdate(this.index);
       if (this.element) {
