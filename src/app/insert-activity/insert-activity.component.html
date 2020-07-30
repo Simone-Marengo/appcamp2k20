@@ -1,0 +1,52 @@
+<app-header-modal-dismisser [title]="getHeaderTitle()"></app-header-modal-dismisser>
+
+<ion-content padding>
+
+	<ng-container *ngIf="listArray && listArray.length > 0; else noElements">
+		<div *ngFor="let list of listArray; let i = index">
+			<ion-card style="position: relative;">
+				<ion-card-content>
+					<ion-card-title>
+						{{list.title}}
+					</ion-card-title>
+
+					<ion-list>
+						<ion-item class="">
+							<ion-label position="floating">Activity</ion-label>
+							<ion-input type="text" #activityInput>
+							</ion-input>
+							<ion-button slot="end" (click)="saveActivity(activityInput, i)"
+								[disabled]="disableInput(activityInput.value)">
+								<ion-icon name="add"></ion-icon>
+							</ion-button>
+						</ion-item>
+						<ng-container *ngIf="list.listActivity && list.listActivity.length">
+							<ion-item *ngFor="let activity of list.listActivity; let j = index;">
+								<ion-label>{{activity}}</ion-label>
+								<ion-button (click)="deleteActivity(j, i)">
+									<ion-icon name="trash"></ion-icon>
+								</ion-button>
+							</ion-item>
+						</ng-container>
+					</ion-list>
+				</ion-card-content>
+			</ion-card>
+		</div>
+	</ng-container>
+
+	<ng-template #noElements>
+		<ion-card>
+			<!-- <img [src]="imageUrlOops" class="img-meme"/> -->
+			<ion-card-header>
+				<ion-card-title>Ops...</ion-card-title>
+				<ion-card-subtitle>non hai nessuna lista!</ion-card-subtitle>
+			</ion-card-header>
+			<ion-card-content>
+				<p>
+					Puoi andare nel Tab di Insert per crearne una nuova!
+				</p>
+			</ion-card-content>
+		</ion-card>
+	</ng-template>
+
+</ion-content>

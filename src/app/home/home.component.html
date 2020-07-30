@@ -1,0 +1,26 @@
+<ion-content padding>
+
+	<ng-container *ngIf="listArray && listArray.length > 0; else noElements">
+		<div *ngFor="let list of listArray; let i = index">
+
+			<app-card-list [list]="list" [index]="i" (emitRefreshArray)="refreshArray($event)"></app-card-list>
+
+		</div>
+	</ng-container>
+
+	<ng-template #noElements>
+		<ion-card>
+			<!-- <img [src]="imageUrlOops" class="img-meme"/> -->
+			<ion-card-header>
+				<ion-card-title>Ops...</ion-card-title>
+				<ion-card-subtitle>non hai nessuna lista!</ion-card-subtitle>
+			</ion-card-header>
+			<ion-card-content>
+				<p>
+					Puoi andare nel Tab di Insert per crearne una nuova!
+				</p>
+			</ion-card-content>
+		</ion-card>
+	</ng-template>
+
+</ion-content>

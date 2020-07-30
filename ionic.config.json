@@ -1,0 +1,8 @@
+{
+  "name": "appcamp2k20",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
