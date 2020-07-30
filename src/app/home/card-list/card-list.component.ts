@@ -18,9 +18,9 @@ export class CardListComponent implements OnInit {
     private actionSheetController: ActionSheetController,
     private pageDataService: PageDataService,
     private modalController: ModalController
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({

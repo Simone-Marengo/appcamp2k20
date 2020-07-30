@@ -13,7 +13,7 @@ export class InsertActivityComponent implements OnInit {
   constructor(
     private modalController: ModalController,
     private pageDataService: PageDataService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.listArray = this.pageDataService.listArray;

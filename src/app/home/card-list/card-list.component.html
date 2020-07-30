@@ -1,18 +1,18 @@
 <ion-card [ngClass]="list.className">
-	<img [src]="list.imageUrl" class="img-meme cursor-pointer" (click)="presentActionSheet()" />
-	<ion-card-content>
-		<ion-card-title>
-			{{list.title}}
-		</ion-card-title>
-		<p>
-			{{list.description}}
-		</p>
-		<p>
-			{{list.startDate}} - {{list.endDate}}
-		</p>
-		<p>
-			Activities {{list.listActivity.length}}
-			<a class="cursor-pointer" [hidden]="list.listActivity.length === 0">view all</a>
-		</p>
-	</ion-card-content>
+    <img [src]="list.imageUrl" class="img-meme cursor-pointer" (click)="presentActionSheet()" />
+    <ion-card-content>
+        <ion-card-title>
+            {{list.title}}
+        </ion-card-title>
+        <p>
+            {{list.description}}
+        </p>
+        <p>
+            {{list.startDate}} - {{list.endDate}}
+        </p>
+        <p>
+            Activities {{list.listActivity.length}}
+            <a class="cursor-pointer" [hidden]="list.listActivity.length === 0">view all</a>
+        </p>
+    </ion-card-content>
 </ion-card>

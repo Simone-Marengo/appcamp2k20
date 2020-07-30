@@ -49,10 +49,10 @@ const routes: Routes = [
     redirectTo: "/tabs/home",
     pathMatch: "full"
   }
-
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
