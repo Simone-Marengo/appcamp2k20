@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from "@angular/core";
-import { ActionSheetController, ModalController } from "@ionic/angular";
+import { ActionSheetController, ModalController, AlertController } from "@ionic/angular";
 import { InsertPageComponent } from "../../insert/insert.component";
 import { PageDataService } from "../../../services/tabs-data.service";
 import { InsertActivityComponent } from "../../insert-activity/insert-activity.component";
@@ -10,14 +10,17 @@ import { InsertActivityComponent } from "../../insert-activity/insert-activity.c
   styleUrls: ["./card-list.component.css", "../home.component.css"]
 })
 export class CardListComponent implements OnInit {
+
   @Input("list") list: any;
   @Input("index") index: any;
 
   @Output("emitRefreshArray") emitRefreshArray = new EventEmitter();
+
   constructor(
     private actionSheetController: ActionSheetController,
     private pageDataService: PageDataService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() { }
@@ -25,14 +28,13 @@ export class CardListComponent implements OnInit {
   async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({
       header: "Manage list",
-      // cssClass: "my-custom-class",
       buttons: [
         {
           text: "Delete",
           role: "destructive",
           icon: "trash",
           handler: () => {
-            this.delete();
+            this.askForDelete();
           }
         },
         {
@@ -53,26 +55,41 @@ export class CardListComponent implements OnInit {
           text: "Cancel",
           icon: "close",
           role: "cancel",
-          handler: () => {
-            console.log("Cancel clicked");
-          }
+          handler: () => { }
         }
       ]
     });
     await actionSheet.present();
   }
 
-  /*
-    per eliminare un elemento
-      - metodo collegato al bottone di delete nell'html
-      - nel metodo richimare, passando l'index attuale dell'elemento da eliminare,
-        al metodo di eliminazione nel service
-      - infine aggiornare l'array con quello modificato nel service
-  */
   delete() {
     this.pageDataService.deleteElement(this.index);
     this.pageDataService.presentToast("Lista Eliminata con Successo!");
     this.emitRefreshArray.emit();
+  }
+
+  private async askForDelete() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirm!',
+      message: 'Are you sure to <strong>delete</strong> this?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => { }
+        },
+        {
+          text: 'Okay',
+          handler: () => {
+            this.delete();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   async edit() {

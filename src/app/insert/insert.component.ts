@@ -7,7 +7,6 @@ import {
 } from "@angular/forms";
 import { PageDataService } from "../../services/tabs-data.service";
 import { ToastController, ModalController } from "@ionic/angular";
-import { aliasTransformFactory } from "@angular/compiler-cli/src/ngtsc/transform/src/alias";
 
 @Component({
   selector: "app-insert",
@@ -19,6 +18,7 @@ export class InsertPageComponent implements OnInit, OnDestroy {
   listIndexNumber: number;
   action: string = "Save";
   element: any;
+  defaultImageUrl: string = "https://www.svaghiamo.it/wp-content/uploads/2016/09/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef-300x199.png";
 
   // contenitore di input ( serve a prelevare e controllare valori)
   form: FormGroup;
@@ -52,7 +52,7 @@ export class InsertPageComponent implements OnInit, OnDestroy {
     this.resetEndDateValue();
     const startDate = this.form.get("startDate");
     const endDate = this.form.get("endDate");
-    
+
     if (
       (startDate.dirty && startDate.touched) ||
       (startDate.value && startDate.value !== null)
@@ -108,7 +108,7 @@ export class InsertPageComponent implements OnInit, OnDestroy {
       label: labelValue,
       startDate: startDateValue,
       endDate: endDateValue,
-      imageUrl: imageUrlValue,
+      imageUrl: imageUrlValue ? imageUrlValue : this.defaultImageUrl,
       listActivity: this.action === "Edit" ? this.element.listActivity : [],
       className
     };
@@ -128,7 +128,7 @@ export class InsertPageComponent implements OnInit, OnDestroy {
       label: ["", Validators.required],
       startDate: ["", Validators.required],
       endDate: [{ value: "", disabled: true }, Validators.required],
-      imageUrl: ["", Validators.required]
+      imageUrl: [""]
     });
   }
 

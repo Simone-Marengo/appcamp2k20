@@ -1,7 +1,7 @@
 <ion-card [ngClass]="list.className">
     <img [src]="list.imageUrl" class="img-meme cursor-pointer" (click)="presentActionSheet()" />
     <ion-card-content>
-        <ion-card-title>
+        <ion-card-title (click)="presentActionSheet()">
             {{list.title}}
         </ion-card-title>
         <p>
