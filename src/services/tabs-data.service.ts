@@ -6,8 +6,7 @@ import { ToastController } from "@ionic/angular";
 })
 export class PageDataService {
   public listArray: Array<any> = [];
-  public indexElementToUpdate: number;
-  constructor(private toastController: ToastController) {}
+  constructor(private toastController: ToastController) { }
 
   public addElement(element: any) {
     this.listArray.push(element);
@@ -18,36 +17,22 @@ export class PageDataService {
     this.listArray.splice(index, 1);
   }
 
-  public getElementByIndexElementToUpdate(): any {
-    return this.listArray[this.indexElementToUpdate];
+  public getElementByIndexElementToUpdate(index): any {
+    return this.listArray[index];
   }
 
-  public resetIndexElementToUpdate(): any {
-    this.indexElementToUpdate = null;
-  }
-
-  public editElement(element: any) {
+  public editElement(element: any, index) {
     // sostituire l'elemento
-    this.listArray[this.indexElementToUpdate] = element;
+    this.listArray[index] = element;
 
     // eliminare e sostituire
     // this.listArray.splice(this.indexElementToUpdate, 1, element);
-
-    // riassegniamo i valori
-    // const { title, description, label, startDate, endDate } = element;
-    // const arrayElement = this.listArray[this.indexElementToUpdate];
-
-    // arrayElement.title = title;
-    // arrayElement.description = description;
-    // arrayElement.label = label;
-    // arrayElement.startDate = startDate;
-    // arrayElement.endDate = endDate;
   }
 
   public async presentToast(title: string) {
     const toast = await this.toastController.create({
       header: title,
-      position: "bottom",
+      position: 'middle',
       duration: 2000
     });
     toast.present();

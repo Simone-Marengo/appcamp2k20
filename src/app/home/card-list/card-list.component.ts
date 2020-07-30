@@ -97,16 +97,11 @@ export class CardListComponent implements OnInit {
   }
 
   private async openInsert() {
-    this.pageDataService.indexElementToUpdate = this.index;
     const modal = await this.modalController.create({
-      component: InsertPageComponent
-      // componentProps: {
-      //   listIndexNumber: index
-      // }
-    });
-
-    modal.onDidDismiss().then((detail: any) => {
-      this.pageDataService.resetIndexElementToUpdate();
+      component: InsertPageComponent,
+      componentProps: {
+        index: this.index
+      }
     });
 
     return await modal.present();
@@ -117,16 +112,11 @@ export class CardListComponent implements OnInit {
   }
 
   private async openInsertActivities() {
-    this.pageDataService.indexElementToUpdate = this.index;
     const modal = await this.modalController.create({
-      component: InsertActivityComponent
-      // componentProps: {
-      //   listIndexNumber: index
-      // }
-    });
-
-    modal.onDidDismiss().then((detail: any) => {
-      this.pageDataService.resetIndexElementToUpdate();
+      component: InsertActivityComponent,
+      componentProps: {
+        index: this.index
+      }
     });
 
     return await modal.present();

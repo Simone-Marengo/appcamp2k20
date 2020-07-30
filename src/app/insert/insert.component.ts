@@ -14,8 +14,8 @@ import { ToastController, ModalController } from "@ionic/angular";
   styleUrls: ["insert.component.css"]
 })
 export class InsertPageComponent implements OnInit, OnDestroy {
+  @Input('index') index: any;
   minStartDate: string;
-  listIndexNumber: number;
   action: string = "Save";
   element: any;
   defaultImageUrl: string = "https://www.svaghiamo.it/wp-content/uploads/2016/09/image-not-found-4a963b95bf081c3ea02923dceaeb3f8085e1a654fc54840aac61a57a60903fef-300x199.png";
@@ -32,10 +32,10 @@ export class InsertPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const index = this.pageDataService.indexElementToUpdate;
     this.setMinStartDates();
-    if (index !== null && index !== undefined) {
-      this.element = this.pageDataService.getElementByIndexElementToUpdate();
+    console.log(this.index)
+    if (this.index !== null && this.index !== undefined) {
+      this.element = this.pageDataService.getElementByIndexElementToUpdate(this.index);
       if (this.element) {
         this.action = "Edit";
         this.valorizeForm(this.element);
@@ -88,7 +88,7 @@ export class InsertPageComponent implements OnInit, OnDestroy {
 
   editLista() {
     const listValue: any = this.getListValue();
-    this.pageDataService.editElement(listValue);
+    this.pageDataService.editElement(listValue, this.index);
     this.pageDataService.presentToast("Lista Modificata con Successo!");
     this.form.reset();
     this.dismiss();

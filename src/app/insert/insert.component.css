@@ -1,4 +1,8 @@
-.form-error{
-  text-align: right;
-  color: red;
+.form-error {
+    text-align: right;
+    color: red;
+}
+
+.toast {
+    bottom: calc(65px + var(--ion-safe-area-bottom, 0px))
 }

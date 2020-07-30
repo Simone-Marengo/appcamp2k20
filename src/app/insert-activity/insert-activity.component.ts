@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { PageDataService } from "../../services/tabs-data.service";
 import { ModalController } from "@ionic/angular";
 
@@ -8,6 +8,7 @@ import { ModalController } from "@ionic/angular";
   styleUrls: ["insert-activity.component.css"]
 })
 export class InsertActivityComponent implements OnInit {
+  @Input('index') listIndexNumber: any;
   listArray: Array<any> = [];
   isModalOpened: boolean = false;
   constructor(
@@ -18,6 +19,7 @@ export class InsertActivityComponent implements OnInit {
   ngOnInit() {
     this.listArray = this.pageDataService.listArray;
     this.checkIsModalOpened();
+    console.log(this.listIndexNumber);
   }
 
   saveActivity(activityInput, i) {
